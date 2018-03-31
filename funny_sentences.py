@@ -14,9 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.tree import DecisionTreeClassifier
 
-from pymystem3 import Mystem
 
 class FunnySentences:
     def __init__(self, t1, t2):
@@ -30,7 +28,7 @@ class FunnySentences:
                 df['sentences'], df['labels'], test_size=0.2, random_state=42
                 )
         self.X_train = X_train
-        self.X_text = X_test
+        self.X_test = X_test
         self.y_train = y_train
         self.y_test = y_test
 
@@ -51,6 +49,8 @@ class FunnySentences:
             ('nb', MultinomialNB())]
         )
         self.model.fit(self.X_train, y=self.y_train)
+        print(classification_report(self.y_test, self.model.predict(self.X_test)))
+        print(accuracy_score(self.y_test, self.model.predict(self.X_test)))
 
     def is_funny(self, sent):
         try:
