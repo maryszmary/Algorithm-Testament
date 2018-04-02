@@ -36,6 +36,7 @@ class FunnySentences:
         self.punct = list(punctuation)
         self.min_p = 0.15
         self.max_p = 0.97
+        pass
 
     def preprocessor(self):
         def ret(text):
@@ -58,12 +59,12 @@ class FunnySentences:
         except:
             raise Exception("You should run «learn» method first")
 
-    def gen_funny(self, generator):
+    def gen_funny(self, generator, n):
         funny = []
-        for i in range(100):
+        for i in range(100 * int(n/10)):
             sent = generator()
             if self.is_funny(sent):
                 funny.append(sent)
-            if len(funny) == 3:
+            if len(funny) == n:
                 return funny
         return funny
