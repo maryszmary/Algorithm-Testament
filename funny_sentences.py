@@ -35,7 +35,7 @@ class FunnySentences:
         self.stopset = stopwords.words('russian')
         self.punct = list(punctuation)
         self.min_p = 0.15
-        self.max_p = 0.97
+        self.max_p = 0.85
         pass
 
     def preprocessor(self):
@@ -59,11 +59,11 @@ class FunnySentences:
         except:
             raise Exception("You should run «learn» method first")
 
-    def gen_funny(self, generator, n):
+    def gen_funny(self, generator, n, substr=''):
         funny = []
-        for i in range(100 * int(n/10)):
+        for i in range(300 * int(n/10)):
             sent = generator()
-            if self.is_funny(sent):
+            if self.is_funny(sent) and len(sent) < 300 and substr in sent:
                 funny.append(sent)
             if len(funny) == n:
                 return funny

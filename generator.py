@@ -14,8 +14,8 @@ def main():
 		coding = f.read()
 	fs = FunnySentences(bible, coding)
 	fs.learn()
-	text_moldel = markovify.Text(text)
-	sent = fs.gen_funny(text_moldel.make_sentence, 60)
+	text_model = markovify.Text(text)
+	sent = fs.gen_funny(text_model.make_sentence, 60) # , 'ибо Господь есть Бог.'
 	print('\n\n'.join(sent))
 
 
